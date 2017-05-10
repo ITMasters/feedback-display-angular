@@ -56,9 +56,9 @@ export class FeedbackListComponent implements OnInit {
     return this.feedbackItems.filter(item => item.event === event);
   }
   search(term: string): void {
-    if (term !== ''){
+    if (term !== '') {
       this.searchActive = true;
-      this.searchResults = this.eventStats.filter(event => event.name.indexOf(term) !== -1);
+      this.searchResults = this.eventStats.filter(event => event.name.toLowerCase().indexOf(term.toLowerCase()) !== -1);
       this.currentStats = this.searchResults;
     } else {
       this.searchResults = [];
