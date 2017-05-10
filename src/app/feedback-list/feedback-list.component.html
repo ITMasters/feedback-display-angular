@@ -1,0 +1,71 @@
+<h2>Feedback Items</h2>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">🔍</span>
+  <input #searchBox type="text" class="form-control" placeholder="Search" (keyup)="search(searchBox.value)">
+</div>
+<div class="row">
+  <div class="col-6">
+    <button type="button" class="btn btn-secondary" (click)="sortStats('name')">Sort by Event Name ⇕</button>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-secondary" (click)="sortStats('rating')">Sort by Rating ⇕</button>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-secondary" (click)="sortStats('responses')">Sort by Responses ⇕</button>
+  </div>
+</div>
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <ng-container *ngFor="let event of currentStats; let i = index;">
+    <div class="card">
+      <div class="card-header" role="tab" id="heading{{ i }}">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ i }}">
+            <div class="row">
+              <div class="col-6">
+                {{ event.name }}
+              </div>
+              <div class="col">
+                Overall rating: {{ event.aggregateRating }}
+              </div>
+              <div class="col">
+                Responses {{ event.numRatings }}
+              </div>
+            </div>
+          </a>
+        </h5>
+      </div>
+      <div id="collapse{{ i }}" class="collapse" role="tabpanel">
+        <div class="card-block">
+          <table class="table">
+            <thead class="thead-default">
+            <tr>
+              <th>
+                Email
+              </th>
+              <th>
+                Rating
+              </th>
+              <th>
+                Comment
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let feedback of getEventFeedback(event.name)">
+              <td>
+                {{ feedback.email }}
+              </td>
+              <td>
+                {{ feedback.rating }}
+              </td>
+              <td>
+                {{ feedback.comment }}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
