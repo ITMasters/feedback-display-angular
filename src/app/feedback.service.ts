@@ -6,7 +6,7 @@ import { Feedback } from './feedback';
 export class FeedbackService {
 
   private key = 'Ala137lN2uezKOwn40Uct3c1z3asTnNm';
-  private feedbackUrl = 'https://itmasters2.staging.wpengine.com/wp-json/itm/v1/get_feedback_results?key=' + this.key;  // URL to web api
+  private feedbackUrl = 'https://www.itmasters.edu.au/wp-json/itm/v1/get_feedback_results?key=' + this.key;  // URL to web api
   constructor(private http: Http) { }
   getFeedback(): Promise<Feedback[]> {
     return this.http.get(this.feedbackUrl)

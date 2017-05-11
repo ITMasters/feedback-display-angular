@@ -48,7 +48,7 @@ export class FeedbackListComponent implements OnInit {
         });
       eventStat.name = event;
       eventStat.numRatings = responses;
-      eventStat.aggregateRating = totalRating / responses;
+      eventStat.aggregateRating = +(totalRating / responses).toFixed(2);
       this.eventStats.push(eventStat);
     });
   }
