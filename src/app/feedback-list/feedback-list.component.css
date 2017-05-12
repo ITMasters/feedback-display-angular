@@ -4,6 +4,9 @@ h2 {
 .input-group {
   margin-bottom: 1rem;
 }
-#accordion {
+#eventList {
   padding-top: 1rem;
+}
+.ngx-pagination {
+	list-style-type: none;
 }

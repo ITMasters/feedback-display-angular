@@ -10,12 +10,15 @@ import {EventStats} from '../eventstats';
 })
 export class FeedbackListComponent implements OnInit {
   feedbackItems: Feedback[];
+  currentFeedbackItems: Feedback[];
   events: string[] = [];
   eventStats: EventStats[] = [];
   searchActive: boolean;
   searchResults: EventStats[] = [];
   currentStats: EventStats[] = [];
   sortDirection: boolean;
+  p: number = 1;
+  ps: number = 1;
   constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit() {
@@ -27,7 +30,13 @@ export class FeedbackListComponent implements OnInit {
   getFeedbackItems(): void {
     this.feedbackService.getFeedback()
       .then(feedbackItems => {
-        this.feedbackItems = feedbackItems;
+        this.feedbackItems = feedbackItems
+          .sort((a,b) => {
+            const va = (a.comment === null) ? "" : "" + a.comment;
+            const vb = (b.comment === null) ? "" : "" + b.comment;
+
+            return va > vb ? -1 : ( va === vb ? 0 : 1 );
+          });;
         this.updateEvents();
       });
   }
@@ -52,8 +61,8 @@ export class FeedbackListComponent implements OnInit {
       this.eventStats.push(eventStat);
     });
   }
-  getEventFeedback(event: string): Feedback[] {
-    return this.feedbackItems.filter(item => item.event === event);
+  setEvent(event: string): void {
+    this.currentFeedbackItems = this.feedbackItems.filter(item => item.event === event);
   }
   search(term: string): void {
     if (term !== '') {
