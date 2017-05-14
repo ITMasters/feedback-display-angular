@@ -1,5 +1,8 @@
-h2 {
+.listHeader {
   padding-top: 4rem;
+}
+.listHeader h2 {
+	float: left;
 }
 .input-group {
   margin-bottom: 1rem;
@@ -9,4 +12,10 @@ h2 {
 }
 .ngx-pagination {
 	list-style-type: none;
+}
+.card-block pagination-controls {
+	float: left;
+}
+csv-downloader {
+	float: right;
 }

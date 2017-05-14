@@ -1,4 +1,7 @@
-<h2>Feedback Items</h2>
+<div class="listHeader">
+  <h2>Feedback Items</h2>
+  <csv-downloader [data]="feedbackItems" [downloaderName]="'Export all to CSV'"></csv-downloader>
+</div>
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">🔍</span>
   <input #searchBox type="text" class="form-control" placeholder="Search" (keyup)="search(searchBox.value)">
@@ -39,6 +42,7 @@
         <div id="collapse{{ i }}" class="collapse" role="tabpanel">
           <div class="card-block">
             <pagination-controls (pageChange)="p = $event" id="second"></pagination-controls>
+            <csv-downloader [data]="currentFeedbackItems"></csv-downloader>
             <table class="table">
               <thead class="thead-default">
               <tr>

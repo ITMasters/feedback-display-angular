@@ -7,11 +7,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppComponent } from './app.component';
 import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { FeedbackService } from './feedback.service';
+import { CsvDownloader } from './csv-downloader';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FeedbackListComponent
+    FeedbackListComponent,
+    CsvDownloader,
   ],
   imports: [
     BrowserModule,
